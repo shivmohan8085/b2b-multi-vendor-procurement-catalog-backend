@@ -1,0 +1,521 @@
+b2b-multi-vendor-procurement-catalog-backend/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── apps/
+│   ├── __init__.py
+│   ├── core/
+│   ├── accounts/
+│   ├── vendors/
+│   ├── catalog/
+│   ├── orders/
+│   ├── invoices/
+│   ├── notifications/
+│   └── dashboard/
+│
+├── config/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── wsgi.py
+│   ├── urls.py
+│   ├── api_urls.py
+│   ├── celery.py
+│   ├── logging.py
+│   └── settings/
+│       ├── __init__.py
+│       ├── base.py
+│       ├── development.py
+│       ├── production.py
+│       └── test.py
+│
+├── docker/
+│   ├── nginx/
+│   │   └── nginx.conf
+│   └── scripts/
+│       ├── entrypoint.sh
+│       └── wait-for-db.sh
+│
+├── docs/
+│   ├── architecture.md
+│   ├── api_conventions.md
+│   ├── api_endpoints.md
+│   ├── caching.md
+│   ├── celery_tasks.md
+│   ├── deployment.md
+│   ├── email_templates.md
+│   ├── env.md
+│   ├── erd.md
+│   └── invoice_pdf.md
+│
+├── logs/
+│   └── .gitkeep
+│
+├── media/
+│   ├── public/
+│   │   ├── products/
+│   │   │   └── .gitkeep
+│   │   └── vendor_logos/
+│   │       └── .gitkeep
+│   └── private/
+│       ├── vendor_documents/
+│       │   └── .gitkeep
+│       └── invoices/
+│           └── .gitkeep
+│
+├── requirements/
+│   ├── base.txt
+│   ├── development.txt
+│   └── production.txt
+│
+├── static/
+│   ├── css/
+│   │   ├── email.css
+│   │   └── invoice_pdf.css
+│   └── images/
+│       ├── .gitkeep
+│       └── logo.png
+│
+├── templates/
+│   ├── emails/
+│   │   ├── base_email.html
+│   │   ├── base_email.txt
+│   │   │
+│   │   ├── account/
+│   │   │   ├── email_verification.html
+│   │   │   ├── email_verification.txt
+│   │   │   ├── password_reset.html
+│   │   │   ├── password_reset.txt
+│   │   │   ├── welcome_email.html
+│   │   │   └── welcome_email.txt
+│   │   │
+│   │   ├── vendor/
+│   │   │   ├── vendor_approved.html
+│   │   │   ├── vendor_approved.txt
+│   │   │   ├── vendor_rejected.html
+│   │   │   └── vendor_rejected.txt
+│   │   │
+│   │   ├── order/
+│   │   │   ├── order_confirmation.html
+│   │   │   ├── order_confirmation.txt
+│   │   │   ├── order_status_update.html
+│   │   │   └── order_status_update.txt
+│   │   │
+│   │   ├── invoice/
+│   │   │   ├── invoice_email.html
+│   │   │   └── invoice_email.txt
+│   │   │
+│   │   └── reports/
+│   │       ├── daily_sales_report.html
+│   │       └── daily_sales_report.txt
+│   │
+│   └── pdf/
+│       ├── base_pdf.html
+│       └── invoice/
+│           ├── invoice_pdf.html
+│           └── partials/
+│               ├── invoice_header.html
+│               ├── invoice_party_details.html
+│               ├── invoice_items_table.html
+│               ├── invoice_totals.html
+│               └── invoice_footer.html
+│
+├── tests/
+│   ├── __init__.py
+│   └── integration/
+│       ├── __init__.py
+│       ├── test_auth_flow.py
+│       ├── test_vendor_onboarding_flow.py
+│       ├── test_product_catalog_flow.py
+│       ├── test_order_flow.py
+│       └── test_order_to_invoice_flow.py
+│
+├── .dockerignore
+├── .editorconfig
+├── .env.example
+├── .gitignore
+├── .pre-commit-config.yaml
+├── conftest.py
+├── Dockerfile
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── Makefile
+├── manage.py
+├── pyproject.toml
+└── README.md
+
+
+
+# Standard Internal Structure For Each App
+apps/app_name/
+├── __init__.py
+├── apps.py
+├── admin.py
+├── constants.py
+├── models.py
+├── serializers.py
+├── services.py
+├── selectors.py
+├── signals.py
+├── tasks.py
+├── urls.py
+├── validators.py
+├── views.py
+├── migrations/
+│   └── __init__.py
+└── tests/
+    ├── __init__.py
+    ├── factories.py
+    ├── test_api.py
+    ├── test_models.py
+    └── test_services.py
+
+
+
+
+
+
+#--------------
+Implementation order:
+1. core
+2. accounts
+3. vendors
+4. catalog
+5. orders
+6. invoices
+7. notifications
+8. dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# create base dir 
+
+# Create top-level directories
+mkdir -p .github/workflows
+
+# Create Django apps directories
+mkdir -p apps/core
+mkdir -p apps/accounts
+mkdir -p apps/vendors
+mkdir -p apps/catalog
+mkdir -p apps/orders
+mkdir -p apps/invoices
+mkdir -p apps/notifications
+mkdir -p apps/dashboard
+
+# Create Django project configuration directories
+mkdir -p config/settings
+
+# Create Docker directories
+mkdir -p docker/nginx
+mkdir -p docker/scripts
+
+# Create documentation directories
+mkdir -p docs
+
+# Create logs directory
+mkdir -p logs
+
+# Create media directories
+mkdir -p media/public/products
+mkdir -p media/public/vendor_logos
+mkdir -p media/private/vendor_documents
+mkdir -p media/private/invoices
+
+# Create Python requirements directory
+mkdir -p requirements
+
+# Create static directories
+mkdir -p static/css
+mkdir -p static/images
+
+# Create email template directories
+mkdir -p templates/emails/account
+mkdir -p templates/emails/vendor
+mkdir -p templates/emails/order
+mkdir -p templates/emails/invoice
+mkdir -p templates/emails/reports
+
+# Create PDF template directories
+mkdir -p templates/pdf/invoice/partials
+
+# Create test directories
+mkdir -p tests/integration
+
+
+------------------------------------#  Create Root Level Files #------------------------------------
+# Create root-level files
+touch .dockerignore
+touch .editorconfig
+touch .env.example
+touch .gitignore
+touch .pre-commit-config.yaml
+touch Dockerfile
+touch Makefile
+touch README.md
+touch conftest.py
+touch docker-compose.yml
+touch docker-compose.prod.yml
+touch manage.py
+touch pyproject.toml
+
+
+
+------------------------------------# Create requirements files #------------------------------------
+touch requirements/base.txt
+touch requirements/development.txt
+touch requirements/production.txt
+
+
+
+
+
+------------------------------------# Create config and settings files #------------------------------------
+# Create Django config files
+touch config/__init__.py
+touch config/asgi.py
+touch config/wsgi.py
+touch config/urls.py
+touch config/api_urls.py
+touch config/celery.py
+touch config/logging.py
+
+# Create settings files
+touch config/settings/__init__.py
+touch config/settings/base.py
+touch config/settings/development.py
+touch config/settings/production.py
+touch config/settings/test.py
+
+
+
+
+
+------------------------------------# Create Apps Base Files #------------------------------------
+
+# Create apps package file
+touch apps/__init__.py
+
+# Create app base files for each app
+for app in core accounts vendors catalog orders invoices notifications dashboard
+do
+  touch apps/$app/__init__.py
+  touch apps/$app/admin.py
+  touch apps/$app/apps.py
+  touch apps/$app/constants.py
+  touch apps/$app/models.py
+  touch apps/$app/serializers.py
+  touch apps/$app/services.py
+  touch apps/$app/selectors.py
+  touch apps/$app/signals.py
+  touch apps/$app/tasks.py
+  touch apps/$app/urls.py
+  touch apps/$app/validators.py
+  touch apps/$app/views.py
+
+  mkdir -p apps/$app/migrations
+  touch apps/$app/migrations/__init__.py
+
+  mkdir -p apps/$app/tests
+  touch apps/$app/tests/__init__.py
+  touch apps/$app/tests/factories.py
+  touch apps/$app/tests/test_api.py
+  touch apps/$app/tests/test_models.py
+  touch apps/$app/tests/test_services.py
+done
+
+
+
+
+------------------------------------# Create Core App Extra Files #------------------------------------
+# Create core app common files
+touch apps/core/api_response.py
+touch apps/core/exceptions.py
+touch apps/core/filters.py
+touch apps/core/health_views.py
+touch apps/core/middleware.py
+touch apps/core/mixins.py
+touch apps/core/pagination.py
+touch apps/core/permissions.py
+touch apps/core/renderers.py
+touch apps/core/storage_utils.py
+touch apps/core/throttles.py
+touch apps/core/utils.py
+
+# Create management command directories
+mkdir -p apps/core/management/commands
+
+# Create management command files
+touch apps/core/management/__init__.py
+touch apps/core/management/commands/__init__.py
+touch apps/core/management/commands/seed_data.py
+
+
+
+
+
+------------------------------------# Create Other App Extra Files #------------------------------------
+# Create accounts extra files
+touch apps/accounts/managers.py
+touch apps/accounts/tokens.py
+
+# Create catalog extra files
+touch apps/catalog/image_utils.py
+
+# Create orders extra files
+touch apps/orders/state_machine.py
+
+# Create invoices extra files
+touch apps/invoices/invoice_numbering.py
+touch apps/invoices/pdf_generator.py
+touch apps/invoices/storage_utils.py
+
+# Create notifications extra files
+touch apps/notifications/email_renderer.py
+touch apps/notifications/email_service.py
+
+# Create dashboard extra files
+touch apps/dashboard/cache.py
+
+
+
+
+------------------------------------# Create Docker Files #------------------------------------
+# Create Docker files
+touch docker/nginx/nginx.conf
+touch docker/scripts/entrypoint.sh
+touch docker/scripts/wait-for-db.sh
+
+
+
+
+------------------------------------# Create Docs Files #------------------------------------
+# Create documentation files
+touch docs/architecture.md
+touch docs/api_conventions.md
+touch docs/api_endpoints.md
+touch docs/caching.md
+touch docs/celery_tasks.md
+touch docs/deployment.md
+touch docs/email_templates.md
+touch docs/env.md
+touch docs/erd.md
+touch docs/invoice_pdf.md
+
+
+
+
+------------------------------------# Create Media And Logs Keep Files #------------------------------------
+
+# Keep empty directories in Git
+touch logs/.gitkeep
+
+touch media/public/products/.gitkeep
+touch media/public/vendor_logos/.gitkeep
+touch media/private/vendor_documents/.gitkeep
+touch media/private/invoices/.gitkeep
+
+
+
+------------------------------------# Create static asset files #------------------------------------
+touch static/css/email.css
+touch static/css/invoice_pdf.css
+touch static/images/.gitkeep
+
+
+
+
+------------------------------------# Create Email Templates #---------------------------------------
+# Create base email templates
+touch templates/emails/base_email.html
+touch templates/emails/base_email.txt
+
+# Create account email templates
+touch templates/emails/account/email_verification.html
+touch templates/emails/account/email_verification.txt
+touch templates/emails/account/password_reset.html
+touch templates/emails/account/password_reset.txt
+touch templates/emails/account/welcome_email.html
+touch templates/emails/account/welcome_email.txt
+
+# Create vendor email templates
+touch templates/emails/vendor/vendor_approved.html
+touch templates/emails/vendor/vendor_approved.txt
+touch templates/emails/vendor/vendor_rejected.html
+touch templates/emails/vendor/vendor_rejected.txt
+
+# Create order email templates
+touch templates/emails/order/order_confirmation.html
+touch templates/emails/order/order_confirmation.txt
+touch templates/emails/order/order_status_update.html
+touch templates/emails/order/order_status_update.txt
+
+# Create invoice email templates
+touch templates/emails/invoice/invoice_email.html
+touch templates/emails/invoice/invoice_email.txt
+
+# Create report email templates
+touch templates/emails/reports/daily_sales_report.html
+touch templates/emails/reports/daily_sales_report.txt
+
+
+
+
+
+------------------------------------# Create PDF Templates #---------------------------------------
+# Create PDF base template
+touch templates/pdf/base_pdf.html
+
+# Create invoice PDF templates
+touch templates/pdf/invoice/invoice_pdf.html
+
+# Create invoice PDF partial templates
+touch templates/pdf/invoice/partials/invoice_header.html
+touch templates/pdf/invoice/partials/invoice_party_details.html
+touch templates/pdf/invoice/partials/invoice_items_table.html
+touch templates/pdf/invoice/partials/invoice_totals.html
+touch templates/pdf/invoice/partials/invoice_footer.html
+
+
+
+
+------------------------------------# Create Test Files #---------------------------------------
+# Create root test package
+touch tests/__init__.py
+
+# Create integration test package
+touch tests/integration/__init__.py
+
+# Create integration test files
+touch tests/integration/test_auth_flow.py
+touch tests/integration/test_vendor_onboarding_flow.py
+touch tests/integration/test_product_catalog_flow.py
+touch tests/integration/test_order_flow.py
+touch tests/integration/test_order_to_invoice_flow.py
+
+
+
+------------------------------------# Create GitHub CI File #---------------------------------------
+# Create GitHub workflows directory
+mkdir -p .github/workflows
+
+# Create CI workflow file
+touch .github/workflows/ci.yml
+
+# List hidden GitHub folder contents
+ls -la .github/workflows

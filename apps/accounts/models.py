@@ -1,58 +1,34 @@
-"""
-Custom User model for the application.
-
-Uses email as username instead of default username field.
-Extends AbstractUser to maintain Django's authentication system.
-"""
+"""Custom User model with email authentication and role-based access."""
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from apps.accounts.managers import UserManager
 
 
 class User(AbstractUser):
-    """
-    Custom User model with email as primary identifier.
+    """Custom user model with email as primary identifier."""
     
-    Fields:
-        email: User's email address (unique, used for login)
-        username: Kept for Django admin compatibility (optional)
-        first_name: User's first name
-        last_name: User's last name
-        is_active: Whether user account is active
-        date_joined: When user registered
+    class Role(models.TextChoices):
+        ADMIN = 'admin', 'Admin'
+        VENDOR = 'vendor', 'Vendor'
+        BUYER = 'buyer', 'Buyer'
+        FINANCE = 'finance', 'Finance'
     
-    Future Sprint 2 additions:
-        - role field (admin, vendor, buyer, finance)
-        - email_verified flag
-        - phone number
-    """
+    email = models.EmailField('email address', unique=True)
+    username = models.CharField('username', max_length=150, blank=True, null=True, unique=True)
+    role = models.CharField(max_length=20, choices=Role.choices, default=Role.BUYER)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    email_verified = models.BooleanField(default=False)
     
-    # Make email required and unique
-    email = models.EmailField(
-        'email address',
-        unique=True,
-        help_text='Required. Valid email address.'
-    )
+    objects = UserManager()
     
-    # Keep username optional (for Django admin compatibility)
-    username = models.CharField(
-        'username',
-        max_length=150,
-        blank=True,
-        null=True,
-        unique=True
-    )
-    
-    # Use email for authentication instead of username
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []  # Email already required via USERNAME_FIELD
+    REQUIRED_FIELDS = []
     
     class Meta:
-        """Meta options for User model."""
         verbose_name = 'User'
         verbose_name_plural = 'Users'
         ordering = ['-date_joined']
     
     def __str__(self):
-        """Return string representation of user."""
-        return self.email or self.username or f'User {self.pk}'
+        return self.email

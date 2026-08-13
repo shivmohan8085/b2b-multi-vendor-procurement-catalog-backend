@@ -33,10 +33,12 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist', 
     'corsheaders',
     'django_celery_beat',
     'django_celery_results',
     'drf_spectacular',
+    
 ]
 
 LOCAL_APPS = [
@@ -166,6 +168,8 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
 }
 
 # CORS

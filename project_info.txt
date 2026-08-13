@@ -519,3 +519,96 @@ touch .github/workflows/ci.yml
 
 # List hidden GitHub folder contents
 ls -la .github/workflows
+
+
+
+
+
+------------------------------------# Requirements Files Setup #---------------------------------------
+
+#### requirements/base.txt 
+# Core Django
+Django==4.2.11
+
+# Django REST Framework
+djangorestframework==3.15.1
+djangorestframework-simplejwt==5.3.1
+
+# Database
+psycopg2-binary==2.9.9
+
+# Environment variables
+python-decouple==3.8
+
+# CORS
+django-cors-headers==4.3.1
+
+# Redis & Caching
+redis==5.0.3
+django-redis==5.4.0
+
+# Celery
+celery==5.3.6
+django-celery-beat==2.5.0
+django-celery-results==2.5.1
+
+# Image processing
+Pillow==10.2.0
+
+# API Documentation
+drf-spectacular==0.27.1
+
+# PDF Generation
+WeasyPrint==61.2
+
+# Utilities
+python-dateutil==2.9.0
+
+
+
+####requirements/development.txt 
+-r base.txt
+
+# Testing
+pytest==8.1.1
+pytest-django==4.8.0
+pytest-cov==4.1.0
+factory-boy==3.3.0
+faker==24.3.0
+
+# Code quality
+black==24.3.0
+isort==5.13.2
+flake8==7.0.0
+mypy==1.9.0
+
+# Debugging
+django-debug-toolbar==4.3.0
+ipython==8.22.2
+
+# Development server
+watchdog==4.0.0
+
+
+
+#### requirements/production.txt
+-r base.txt
+
+# Production server
+gunicorn==21.2.0
+
+# Monitoring
+sentry-sdk==1.44.0
+
+# Security
+django-csp==3.8
+
+
+
+
+------------------------------------# Install Dependencies #---------------------------------------
+# Upgrade pip first
+pip install --upgrade pip
+
+# Install development dependencies (includes base)
+pip install -r requirements/development.txt

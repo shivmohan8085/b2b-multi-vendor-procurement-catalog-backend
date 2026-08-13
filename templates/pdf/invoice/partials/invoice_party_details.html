@@ -1,0 +1,17 @@
+<table>
+  <tr>
+      <th>Billed To</th>
+      <th>Billed By</th>
+  </tr>
+  <tr>
+      <td>
+          {{ invoice.buyer.get_full_name }}<br>
+          {{ invoice.buyer.email }}
+      </td>
+      <td>
+          {{ invoice.vendor.company_name }}<br>
+          GST: {{ invoice.vendor.gst_number }}<br>
+          {{ invoice.vendor.city }}, {{ invoice.vendor.state }}
+      </td>
+  </tr>
+</table>

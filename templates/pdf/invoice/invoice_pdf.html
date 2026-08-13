@@ -1,0 +1,9 @@
+{% extends 'pdf/base_pdf.html' %}
+
+{% block content %}
+    {% include 'pdf/invoice/partials/invoice_header.html' %}
+    {% include 'pdf/invoice/partials/invoice_party_details.html' %}
+    {% include 'pdf/invoice/partials/invoice_items_table.html' %}
+    {% include 'pdf/invoice/partials/invoice_totals.html' %}
+    {% include 'pdf/invoice/partials/invoice_footer.html' %}
+{% endblock %}  

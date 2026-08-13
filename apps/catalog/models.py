@@ -104,7 +104,7 @@ class ProductImage(models.Model):
     """Product images."""
     
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='media/public/products/')
+    image = models.ImageField(upload_to='public/products/')
     alt_text = models.CharField(max_length=255, blank=True)
     is_primary = models.BooleanField(default=False)
     sort_order = models.PositiveIntegerField(default=0)

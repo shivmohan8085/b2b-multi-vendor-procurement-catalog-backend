@@ -33,7 +33,7 @@ Pillow==10.2.0
 drf-spectacular==0.27.1
 
 # PDF Generation
-WeasyPrint==61.2
+xhtml2pdf==0.2.16
 
 # Utilities
 python-dateutil==2.9.0

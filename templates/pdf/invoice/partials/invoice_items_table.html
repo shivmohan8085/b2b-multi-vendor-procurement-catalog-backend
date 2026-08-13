@@ -1,0 +1,20 @@
+<table>
+  <tr>
+      <th>#</th>
+      <th>Item</th>
+      <th>SKU</th>
+      <th>Unit Price</th>
+      <th>Qty</th>
+      <th>Total</th>
+  </tr>
+  {% for item in invoice.items.all %}
+  <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ item.product_name }}</td>
+      <td>{{ item.product_sku }}</td>
+      <td>{{ item.unit_price }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.line_total }}</td>
+  </tr>
+  {% endfor %}
+</table>

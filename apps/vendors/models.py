@@ -24,7 +24,7 @@ class VendorProfile(models.Model):
     state = models.CharField(max_length=100, blank=True)
     pincode = models.CharField(max_length=6, blank=True)
     website = models.URLField(blank=True)
-    logo = models.ImageField(upload_to='media/public/vendor_logos/', blank=True, null=True)
+    logo = models.ImageField(upload_to='public/vendor_logos/', blank=True, null=True)
     approval_status = models.CharField(max_length=20, choices=ApprovalStatus.choices, default=ApprovalStatus.PENDING)
     approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='approved_vendors')
     approved_at = models.DateTimeField(null=True, blank=True)
@@ -59,7 +59,7 @@ class VendorKYCDocument(models.Model):
     
     vendor = models.ForeignKey(VendorProfile, on_delete=models.CASCADE, related_name='kyc_documents')
     document_type = models.CharField(max_length=30, choices=DocumentType.choices)
-    document = models.FileField(upload_to='media/private/vendor_documents/')
+    document = models.FileField(upload_to='private/vendor_documents/')
     original_filename = models.CharField(max_length=255)
     verification_status = models.CharField(max_length=20, choices=VerificationStatus.choices, default=VerificationStatus.PENDING)
     verified_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)

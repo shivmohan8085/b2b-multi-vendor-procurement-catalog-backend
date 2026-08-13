@@ -1,0 +1,14 @@
+<table>
+  <tr>
+      <td class="right">Subtotal</td>
+      <td>{{ invoice.subtotal }}</td>
+  </tr>
+  <tr>
+      <td class="right">GST (18%)</td>
+      <td>{{ invoice.tax_amount }}</td>
+  </tr>
+  <tr class="total-row">
+      <td class="right">Grand Total</td>
+      <td>{{ invoice.total_amount }}</td>
+  </tr>
+</table>

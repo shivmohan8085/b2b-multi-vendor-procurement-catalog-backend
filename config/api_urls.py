@@ -6,4 +6,6 @@ from apps.core.health_views import health_check
 urlpatterns = [
     path('health/', health_check, name='health-check'),
     path('v1/auth/', include('apps.accounts.urls')),
+    path('v1/vendors/', include('apps.vendors.urls')),
+    path('v1/catalog/', include('apps.catalog.urls')),
 ]

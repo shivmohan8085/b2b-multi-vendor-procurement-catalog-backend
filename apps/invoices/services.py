@@ -10,6 +10,7 @@ from apps.invoices.invoice_numbering import generate_invoice_number
 from apps.invoices.models import Invoice, InvoiceItem, Payment
 from apps.orders.models import Order
 from apps.orders.services import change_order_status
+from apps.invoices.tasks import send_invoice_email
 
 
 @transaction.atomic
@@ -42,7 +43,9 @@ def create_invoice_from_order(order, user):
         )
     
     change_order_status(order, Order.Status.INVOICED, changed_by=user)
+    send_invoice_email.delay(invoice.id)
     return invoice
+  
 
 
 @transaction.atomic

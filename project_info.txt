@@ -612,3 +612,10 @@ pip install --upgrade pip
 
 # Install development dependencies (includes base)
 pip install -r requirements/development.txt
+
+
+
+
+------------------------------- Celery ----------------------------------------------------
+# Start Celery worker
+celery -A config worker -l info

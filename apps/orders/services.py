@@ -2,15 +2,16 @@
 
 import random
 import string
+from decimal import Decimal
 from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.utils import timezone
 
 from apps.catalog.models import Product
+from apps.invoices.tasks import send_order_confirmation_email
 from apps.orders.models import Address, Order, OrderItem, OrderStatusHistory
 from apps.orders.state_machine import can_transition
 from apps.vendors.models import VendorProfile
-from decimal import Decimal
 
 
 def generate_order_number():
@@ -18,6 +19,7 @@ def generate_order_number():
         number = f"ORD-{timezone.now().year}-{''.join(random.choices(string.digits, k=5))}"
         if not Order.objects.filter(order_number=number).exists():
             return number
+
 
 def calculate_order_totals(order):
     subtotal = sum(item.line_total for item in order.items.all())
@@ -85,6 +87,7 @@ def create_order(*, buyer, vendor_id, shipping_address_id, billing_address_id, i
     
     calculate_order_totals(order)
     change_order_status(order, Order.Status.PENDING_APPROVAL, changed_by=buyer)
+    send_order_confirmation_email.delay(order.id)
     return order
 
 

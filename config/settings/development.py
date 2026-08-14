@@ -13,9 +13,6 @@ DEBUG = True
 # Allowed hosts for local development
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
-# Email backend for development (prints emails to console)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 # CORS: allow all origins in development for easy testing
 CORS_ALLOW_ALL_ORIGINS = True
 

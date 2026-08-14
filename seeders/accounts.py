@@ -5,12 +5,12 @@ from apps.accounts.models import User
 DEFAULT_PASSWORD = 'Password@123'
 
 USERS = [
-    {'email': 'admin@procureflow.com', 'role': 'admin', 'first_name': 'System', 'last_name': 'Admin', 'is_staff': True, 'is_superuser': True},
-    {'email': 'buyer1@example.com', 'role': 'buyer', 'first_name': 'Rahul', 'last_name': 'Sharma'},
-    {'email': 'buyer2@example.com', 'role': 'buyer', 'first_name': 'Priya', 'last_name': 'Patel'},
-    {'email': 'vendor1@example.com', 'role': 'vendor', 'first_name': 'Amit', 'last_name': 'Verma'},
-    {'email': 'vendor2@example.com', 'role': 'vendor', 'first_name': 'Sneha', 'last_name': 'Iyer'},
-    {'email': 'finance@procureflow.com', 'role': 'finance', 'first_name': 'Karan', 'last_name': 'Mehta'},
+    {'email': 'shivbhatt0111@gmail.com', 'role': 'admin', 'first_name': 'System', 'last_name': 'Admin', 'is_staff': True, 'is_superuser': True},
+    {'email': 'shivbhatt0112@gmail.com', 'role': 'buyer', 'first_name': 'Rahul', 'last_name': 'Sharma'},
+    {'email': 'shivbhatt0112@gmail.com', 'role': 'buyer', 'first_name': 'Priya', 'last_name': 'Patel'},
+    {'email': 'shivbhatt0113@gmail.com', 'role': 'vendor', 'first_name': 'Amit', 'last_name': 'Verma'},
+    {'email': 'shivbhatt0113@gmail.com', 'role': 'vendor', 'first_name': 'Sneha', 'last_name': 'Iyer'},
+    {'email': 'shivbhatt0111@gmail.com', 'role': 'finance', 'first_name': 'Karan', 'last_name': 'Mehta'},
 ]
 
 

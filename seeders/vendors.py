@@ -5,8 +5,7 @@ from apps.accounts.models import User
 from apps.vendors.models import VendorProfile, VendorApprovalLog
 
 VENDORS = [
-    {'email': 'vendor1@example.com', 'company_name': 'Acme Suppliers', 'gst_number': '07AAACA1234A1Z5', 'pan_number': 'AAACA1234A', 'city': 'Mumbai', 'state': 'Maharashtra'},
-    {'email': 'vendor2@example.com', 'company_name': 'Global Traders', 'gst_number': '27BBBGB9876B2Z4', 'pan_number': 'BBBGB9876B', 'city': 'Pune', 'state': 'Maharashtra'},
+    {'email': 'shivbhatt0113@gmail.com', 'company_name': 'Acme Suppliers', 'gst_number': '07AAACA1234A1Z5', 'pan_number': 'AAACA1234A', 'city': 'Mumbai', 'state': 'Maharashtra'},
 ]
 
 

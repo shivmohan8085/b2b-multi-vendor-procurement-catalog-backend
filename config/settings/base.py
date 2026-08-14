@@ -50,7 +50,11 @@ LOCAL_APPS = [
     'apps.invoices.apps.InvoicesConfig',
     'apps.notifications.apps.NotificationsConfig',
     'apps.dashboard.apps.DashboardConfig',
+    'apps.reports',
 ]
+
+
+
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -201,9 +205,10 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = TIME_ZONE
+CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_ENABLE_UTC = False
 
 # Celery Beat
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
@@ -223,5 +228,15 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Production-grade B2B procurement system with vendor management, catalog, orders, and invoices',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+}
+
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'daily-sales-report': {
+        'task': 'apps.reports.tasks.send_daily_sales_report',
+        'schedule': crontab(hour=17, minute=38),
+    },
 }
 

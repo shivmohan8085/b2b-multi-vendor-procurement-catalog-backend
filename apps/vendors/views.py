@@ -1,12 +1,16 @@
 """Views for vendor management."""
 
+from django.core.cache import cache
+from django.db.models import F, Sum
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
 
+from apps.catalog.models import Product
+from apps.orders.models import Order
 from apps.vendors.models import VendorProfile, VendorKYCDocument, VendorApprovalLog
 from apps.vendors.serializers import (
     VendorProfileSerializer, VendorProfileCreateSerializer,
@@ -151,3 +155,32 @@ class VendorApprovalLogView(APIView):
         logs = VendorApprovalLog.objects.filter(vendor=vendor)
         serializer = VendorApprovalLogSerializer(logs, many=True)
         return Response(serializer.data)
+
+
+class VendorDashboardView(APIView):
+    """Vendor dashboard stats with Redis caching."""
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        if not hasattr(request.user, 'vendor_profile'):
+            return Response({'error': 'Vendor profile not found'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        vendor = request.user.vendor_profile
+        cache_key = f'vendor_dashboard_{vendor.id}'
+        cached_data = cache.get(cache_key)
+        
+        if cached_data:
+            return Response(cached_data)
+        
+        stats = {
+            'total_products': Product.objects.filter(vendor=vendor).count(),
+            'active_products': Product.objects.filter(vendor=vendor, status='active').count(),
+            'low_stock_products': Product.objects.filter(vendor=vendor, stock_quantity__lte=F('low_stock_threshold')).count(),
+            'total_orders': Order.objects.filter(vendor=vendor).count(),
+            'pending_orders': Order.objects.filter(vendor=vendor, status='pending_approval').count(),
+            'total_revenue': Order.objects.filter(vendor=vendor, status__in=['delivered', 'invoiced', 'completed']).aggregate(total=Sum('total_amount'))['total'] or 0,
+        }
+        
+        cache.set(cache_key, stats, timeout=300)
+        
+        return Response(stats)

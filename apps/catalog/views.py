@@ -1,13 +1,14 @@
 """Views for catalog management."""
 
+from django.core.cache import cache
+from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import ListAPIView
 
 from apps.catalog.models import Category, Tag, Product, ProductImage
 from apps.catalog.serializers import (
@@ -17,6 +18,10 @@ from apps.catalog.serializers import (
 )
 from apps.catalog.permissions import IsProductOwner, IsApprovedVendorPermission
 from apps.core.pagination import StandardResultsSetPagination
+
+
+def invalidate_product_cache():
+    cache.delete_pattern('products_list_*')
 
 
 class CategoryListView(APIView):
@@ -50,7 +55,6 @@ class ProductListView(ListAPIView):
     def get_queryset(self):
         queryset = Product.objects.select_related('vendor', 'category').prefetch_related('images', 'tags')
         
-        # Filter by min/max price
         min_price = self.request.query_params.get('min_price')
         max_price = self.request.query_params.get('max_price')
         
@@ -59,24 +63,43 @@ class ProductListView(ListAPIView):
         if max_price:
             queryset = queryset.filter(price__lte=max_price)
         
-        # Filter by tags
         tags = self.request.query_params.get('tags')
         if tags:
             tag_list = tags.split(',')
             queryset = queryset.filter(tags__slug__in=tag_list).distinct()
         
         return queryset
+    
+    def list(self, request, *args, **kwargs):
+        cache_key = f'products_list_{hash(str(request.query_params))}'
+        cached_data = cache.get(cache_key)
+        
+        if cached_data:
+            return Response(cached_data)
+        
+        response = super().list(request, *args, **kwargs)
+        cache.set(cache_key, response.data, timeout=300)
+        
+        return response
 
 
 class ProductDetailView(APIView):
     permission_classes = [AllowAny]
     
     def get(self, request, slug):
+        cache_key = f'product_detail_{slug}'
+        cached_data = cache.get(cache_key)
+        
+        if cached_data:
+            return Response(cached_data)
+        
         product = get_object_or_404(
             Product.objects.select_related('vendor', 'category').prefetch_related('images', 'tags'),
             slug=slug
         )
         serializer = ProductDetailSerializer(product, context={'request': request})
+        cache.set(cache_key, serializer.data, timeout=300)
+        
         return Response(serializer.data)
 
 
@@ -87,6 +110,9 @@ class ProductCreateView(APIView):
         serializer = ProductCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         product = serializer.save(vendor=request.user.vendor_profile)
+        
+        invalidate_product_cache()
+        
         return Response(ProductDetailSerializer(product, context={'request': request}).data, status=status.HTTP_201_CREATED)
 
 
@@ -103,13 +129,21 @@ class ProductUpdateView(APIView):
         serializer = ProductUpdateSerializer(product, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        
+        invalidate_product_cache()
+        cache.delete(f'product_detail_{slug}')
+        
         return Response(ProductDetailSerializer(product, context={'request': request}).data)
-      
+    
     def delete(self, request, slug):
-      product = self.get_object(slug)
-      self.check_object_permissions(request, product)
-      product.delete()
-      return Response({'message': 'Product deleted successfully'}, status=status.HTTP_200_OK)
+        product = self.get_object(slug)
+        self.check_object_permissions(request, product)
+        product.delete()
+        
+        invalidate_product_cache()
+        cache.delete(f'product_detail_{slug}')
+        
+        return Response({'message': 'Product deleted successfully'}, status=status.HTTP_200_OK)
 
 
 class ProductImageView(APIView):
@@ -139,10 +173,13 @@ class ProductImageView(APIView):
             )
             uploaded_images.append(ProductImageSerializer(product_image).data)
         
+        invalidate_product_cache()
+        cache.delete(f'product_detail_{slug}')
+        
         return Response({'images': uploaded_images}, status=status.HTTP_201_CREATED)
     
     def get(self, request, slug):
         product = self.get_object(slug)
         images = ProductImage.objects.filter(product=product)
         serializer = ProductImageSerializer(images, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data)    

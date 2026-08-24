@@ -617,5 +617,11 @@ pip install -r requirements/development.txt
 
 
 ------------------------------- Celery ----------------------------------------------------
-# Start Celery worker
+# Start Celery worker ---
+source project_venv/bin/activate
 celery -A config worker -l info
+
+
+# start Celery Beat ------
+source project_venv/bin/activate
+celery -A config beat -l info

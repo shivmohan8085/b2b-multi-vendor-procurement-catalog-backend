@@ -8,10 +8,10 @@ CATEGORIES = ['Electronics', 'Office Supplies', 'Furniture', 'IT Accessories']
 TAGS = ['New Arrival', 'Bestseller', 'Bulk Deal']
 
 PRODUCTS = [
-    {'vendor_email': 'vendor1@example.com', 'category': 'Electronics', 'name': 'Wireless Mouse', 'sku': 'WM-001', 'price': '599.00', 'stock': 100},
-    {'vendor_email': 'vendor1@example.com', 'category': 'Electronics', 'name': 'Mechanical Keyboard', 'sku': 'MK-001', 'price': '2499.00', 'stock': 50},
-    {'vendor_email': 'vendor2@example.com', 'category': 'Office Supplies', 'name': 'A4 Paper Pack', 'sku': 'AP-100', 'price': '299.00', 'stock': 500},
-    {'vendor_email': 'vendor2@example.com', 'category': 'Furniture', 'name': 'Office Chair', 'sku': 'OC-010', 'price': '4999.00', 'stock': 30},
+    {'vendor_email': 'shivbhatt0113@gmail.com', 'category': 'Electronics', 'name': 'Wireless Mouse', 'sku': 'WM-001', 'price': '599.00', 'stock': 100},
+    {'vendor_email': 'shivbhatt0113@gmail.com', 'category': 'Electronics', 'name': 'Mechanical Keyboard', 'sku': 'MK-001', 'price': '2499.00', 'stock': 50},
+    {'vendor_email': 'shivbhatt0113@gmail.com', 'category': 'Office Supplies', 'name': 'A4 Paper Pack', 'sku': 'AP-100', 'price': '299.00', 'stock': 500},
+    {'vendor_email': 'shivbhatt0113@gmail.com', 'category': 'Furniture', 'name': 'Office Chair', 'sku': 'OC-010', 'price': '4999.00', 'stock': 30},
 ]
 
 

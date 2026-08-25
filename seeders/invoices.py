@@ -9,8 +9,8 @@ from apps.orders.services import change_order_status
 
 
 def seed():
-    vendor_user = User.objects.get(email='vendor1@example.com')
-    order = Order.objects.filter(buyer__email='buyer1@example.com').first()
+    vendor_user = User.objects.get(email='shivbhatt0113@gmail.com')
+    order = Order.objects.filter(buyer__email='shivbhatt0112@gmail.com').first()
     
     if not order or Invoice.objects.filter(order=order).exists():
         return '0 invoices seeded'

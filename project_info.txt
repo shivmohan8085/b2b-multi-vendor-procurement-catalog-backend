@@ -625,3 +625,28 @@ celery -A config worker -l info
 # start Celery Beat ------
 source project_venv/bin/activate
 celery -A config beat -l info
+
+
+
+Access the API:
+Health Check: http://127.0.0.1:8000/api/health/
+Swagger Docs: http://127.0.0.1:8000/api/docs/
+Login: POST http://127.0.0.1:8000/api/v1/auth/login/
+Demo credentials:
+Admin: shivbhatt0111@gmail.com / Password@123
+Buyer: shivbhatt0112@gmail.com / Password@123
+Vendor: shivbhatt0113@gmail.com / Password@123
+
+
+
+
+## Docker Setup (Production-Ready)
+# Build and start all containers
+docker compose up --build
+
+# Services running:
+# - PostgreSQL (port 5432)
+# - Redis (port 6379)
+# - Django + Gunicorn (port 8000)
+# - Celery Worker
+# - Celery Beat

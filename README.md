@@ -126,3 +126,15 @@ pytest tests/ -v
 
 ![CI](https://github.com/shivmohan8085/b2b-multi-vendor-procurement-catalog-backend/actions/workflows/ci.yml/badge.svg)
 Production-grade REST API backend for a B2B multi-vendor procurement platform.
+
+
+## Docker Setup (Production-Ready)
+# Build and start all containers
+docker compose up --build
+
+# Services running:
+# - PostgreSQL (port 5432)
+# - Redis (port 6379)
+# - Django + Gunicorn (port 8000)
+# - Celery Worker
+# - Celery Beat

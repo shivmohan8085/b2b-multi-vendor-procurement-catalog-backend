@@ -7,9 +7,9 @@ from apps.orders.models import Address, Order
 
 
 def seed():
-    admin = User.objects.get(email='admin@procureflow.com')
-    buyer1 = User.objects.get(email='buyer1@example.com')
-    buyer2 = User.objects.get(email='buyer2@example.com')
+    admin = User.objects.get(email='shivbhatt0111@gmail.com')
+    buyer1 = User.objects.get(email='shivbhatt0112@gmail.com')
+    buyer2 = User.objects.get(email='shivbhatt0112@gmail.com')
     
     addr1, _ = Address.objects.get_or_create(
         user=buyer1, pincode='400001',

@@ -650,3 +650,40 @@ docker compose up --build
 # - Django + Gunicorn (port 8000)
 # - Celery Worker
 # - Celery Beat
+
+
+
+
+################# for docker restart ##################
+docker compose up
+
+
+#################   Scenario 2: Clean Restart     #################
+# Band karo + containers delete
+docker compose down
+
+# Naye containers start karo
+docker compose up
+
+
+
+
+#################     Scenario 3: Fresh Start (Sab Delete, New Data)    #################
+# Sab band + volumes delete (database + cache)
+docker compose down -v
+
+# Rebuild karo (agar code change kiya)
+docker compose up --build
+
+
+
+#################     run in Background       #################
+# Detached mode (background)
+docker compose up -d
+
+# Logs dekho
+docker compose logs -f web
+docker compose logs -f celery_worker
+
+# Band karo
+docker compose down

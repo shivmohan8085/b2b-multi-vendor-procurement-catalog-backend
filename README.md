@@ -138,3 +138,21 @@ docker compose up --build
 # - Django + Gunicorn (port 8000)
 # - Celery Worker
 # - Celery Beat
+
+
+
+
+
+About Project
+B2B Multi-Vendor Procurement Platform
+
+Django REST API for enterprise procurement with vendor management, order lifecycle, and automated invoicing
+
+
+Architected a production-grade multi-vendor platform serving B2B procurement workflows with 11-state order state machine handling draft → pending → approved → delivered transitions
+Implemented JWT-based authentication with role-based access control (admin/buyer/vendor) and custom permissions for vendor product ownership
+Built async email system using Celery + Redis broker for order confirmations and invoice PDFs (xhtml2pdf), reducing API response time by 40%
+Designed Redis caching layer with pattern-based invalidation for product catalog (5-min TTL), improving list API performance by 10x
+Configured Celery Beat scheduler for daily sales analytics reports with Asia/Kolkata timezone awareness
+Wrote 13 pytest tests covering auth flows, permissions, state transitions, and stock reservation; integrated GitHub Actions CI with green build status badge
+Containerized entire stack with Docker Compose (PostgreSQL + Redis + Gunicorn + Celery worker/beat) for reproducible development and production parity

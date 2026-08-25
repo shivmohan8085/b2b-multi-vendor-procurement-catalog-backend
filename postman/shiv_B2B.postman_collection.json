@@ -1,0 +1,1229 @@
+{
+  "info": {
+    "_postman_id": "691f7294-eefc-4027-b23a-dbd6c0e017be",
+    "name": "shiv_B2B",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36740378"
+  },
+  "item": [
+    {
+      "name": "account",
+      "item": [
+        {
+          "name": "logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearer_token_01l3}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"refresh\": \"{{supabase_service_role_api_key_12se}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/logout/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refresh\": \"{{supabase_service_role_api_key_1eji}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/refresh/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Authentication",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer ",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/me/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"shivbhatt0112@gmail.com\", \"password\": \"Password@123\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"buyer1@example.com\",\n    \"password\": \"testpass123\",\n    \"password_confirm\": \"testpass123\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"phone\": \"+911234567890\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login Copy",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"buyer1@example.com\",\n    \"password\": \"testpass123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "vendor",
+      "item": [
+        {
+          "name": "Vendor Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supabase_service_role_api_key_07fh}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"company_name\": \"Global Traders\",\n    \"gst_number\": \"27BBBGB9876B2Z4\",\n    \"pan_number\": \"BBBGB9876B\",\n    \"contact_person\": \"Jane Smith\",\n    \"phone\": \"+919876543210\",\n    \"email\": \"vendor2@example.com\",\n    \"address\": \"456 Market Street\",\n    \"city\": \"Pune\",\n    \"state\": \"Maharashtra\",\n    \"pincode\": \"411001\",\n    \"website\": \"https://globaltraders.com\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/vendors/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "vendors",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Vendor Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"shivbhatt0113@gmail.com\",\n    \"password\": \"Password@123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Catalog",
+      "item": [
+        {
+          "name": "categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/categories/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "categories",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/tags/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "tags",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "product create for vendor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{json_web_token_0w1o}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category\": 1,\n    \"name\": \"USB Cable\",\n    \"slug\": \"usb-cable-001\",\n    \"sku\": \"UC-001\",\n    \"description\": \"High quality USB cable for charging and data transfer\",\n    \"short_description\": \"USB cable\",\n    \"price\": 199.00,\n    \"compare_at_price\": 299.00,\n    \"stock_quantity\": 200,\n    \"low_stock_threshold\": 20,\n    \"status\": \"active\",\n    \"is_featured\": false,\n    \"min_order_quantity\": 1,\n    \"max_order_quantity\": 50,\n    \"tag_ids\": [1]\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/products/create/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "products",
+                "create",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "product list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/products/?ordering=-price",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "products",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "active?",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "USB",
+                  "disabled": true
+                },
+                {
+                  "key": "min_price",
+                  "value": "100",
+                  "disabled": true
+                },
+                {
+                  "key": "max_price",
+                  "value": "300",
+                  "disabled": true
+                },
+                {
+                  "key": "ordering",
+                  "value": "price",
+                  "disabled": true
+                },
+                {
+                  "key": "ordering",
+                  "value": "-price"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "product_detail",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/products/usb-cable-001/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "products",
+                "usb-cable-001",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "product update",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{json_web_token_0xs9}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"price\": 179.00,\n    \"stock_quantity\": 180,\n    \"is_featured\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/products/usb-cable-001/update/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "products",
+                "usb-cable-001",
+                "update",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearer_token_0glb}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/catalog/products/test-product-001/delete/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "catalog",
+                "products",
+                "test-product-001",
+                "delete",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "invoice",
+      "item": [
+        {
+          "name": "Invoice Create (new order se - full flow)",
+          "item": [
+            {
+              "name": "Get Buyer2 order number",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAwNTIyLCJpYXQiOjE3ODY2OTY5MjIsImp0aSI6ImIyNTljNjkzNTkxZDQzYTE4ZTdlZDllOTRhOTU1YzYzIiwidXNlcl9pZCI6M30.8MvQih8hS3jcd6n-IEWt1-Eg3INwS9nsPdqHKkgtqA0",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Admin approve",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAwOTcyLCJpYXQiOjE3ODY2OTczNzIsImp0aSI6IjQ3ZTIwZjU1MTZmOTRiOTFiNzJiMjI1MDBhNzZmMTM0IiwidXNlcl9pZCI6MX0.V7Vv4qlz3YJ5Zoa4bw0UZnpVb7rP_vF3YBp1Q-2mNWw",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "    {\"action\": \"approve\", \"remarks\": \"Approved\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-21614/approve/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "ORD-2026-21614",
+                    "approve",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "sent_to_vendor",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAwOTcyLCJpYXQiOjE3ODY2OTczNzIsImp0aSI6IjQ3ZTIwZjU1MTZmOTRiOTFiNzJiMjI1MDBhNzZmMTM0IiwidXNlcl9pZCI6MX0.V7Vv4qlz3YJ5Zoa4bw0UZnpVb7rP_vF3YBp1Q-2mNWw",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"status\": \"sent_to_vendor\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-21614/status/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "ORD-2026-21614",
+                    "status",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Vendor2 accept",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAxMzM2LCJpYXQiOjE3ODY2OTc3MzYsImp0aSI6IjU4YmQyMGJjNjQxYjQxMDBhNzAyMGViNmQ1YjVhZmMzIiwidXNlcl9pZCI6NX0.G5Kr_PnLPD1M6w3hBTkzWoyoYobkty5kLznoKEngL34",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"status\": \"accepted_by_vendor\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-21614/status/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "ORD-2026-21614",
+                    "status",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Vendor2 deliver",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAxNTQ1LCJpYXQiOjE3ODY2OTc5NDUsImp0aSI6ImJlYzNkMDU2ODk1YzQ1YjY5ZTg3MzUxOTM0ZTczMTJjIiwidXNlcl9pZCI6NX0.wvhZBtsJWU3jv2Q8LAUiGDk7hBezoMH_qu_p8h9mm4g",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"status\": \"delivered\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-21614/status/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "ORD-2026-21614",
+                    "status",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Vendor2 invoice create",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAxNTQ1LCJpYXQiOjE3ODY2OTc5NDUsImp0aSI6ImJlYzNkMDU2ODk1YzQ1YjY5ZTg3MzUxOTM0ZTczMTJjIiwidXNlcl9pZCI6NX0.wvhZBtsJWU3jv2Q8LAUiGDk7hBezoMH_qu_p8h9mm4g",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"order_number\": \"ORD-2026-21614\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/invoices/create/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "invoices",
+                    "create",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify: Order Status Check",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAxNzM2LCJpYXQiOjE3ODY2OTgxMzYsImp0aSI6ImUxZDBkMjU5YzMwMDQ5ZDY5MzA3NjMxNzA0YzRiOWU5IiwidXNlcl9pZCI6NX0.jaPYCt8mblKASD-nd6a8RVxDWY16qN9uMbtlsHQAOUo",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-21614/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders",
+                    "ORD-2026-21614",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get invoice_number",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAxNzM2LCJpYXQiOjE3ODY2OTgxMzYsImp0aSI6ImUxZDBkMjU5YzMwMDQ5ZDY5MzA3NjMxNzA0YzRiOWU5IiwidXNlcl9pZCI6NX0.jaPYCt8mblKASD-nd6a8RVxDWY16qN9uMbtlsHQAOUo",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/invoices/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "invoices",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Download PDF",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzAyMDEyLCJpYXQiOjE3ODY2OTg0MTIsImp0aSI6IjRlODYzNWE2ZGViYzQ3NjQ4MWI5NTZhNGZkY2E2YTA0IiwidXNlcl9pZCI6NX0.oLimZvJRfan9TD__FIm4U4BDwbR_QXSp-6AaVqaXIY0",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/v1/invoices/INV-2026-31689/pdf/",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "v1",
+                    "invoices",
+                    "INV-2026-31689",
+                    "pdf",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "invoice List",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supabase_service_role_api_key_0b0n}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/invoices/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invoice Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supabase_service_role_api_key_0b0n}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/invoices/INV-2026-50639/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "invoices",
+                "INV-2026-50639",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invoice PDF Download",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{bearer_token_1d19}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/invoices/INV-2026-50639/pdf/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "invoices",
+                "INV-2026-50639",
+                "pdf",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Payment Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NjMxODg0LCJpYXQiOjE3ODY2MjgyODQsImp0aSI6IjhjZTEzYmVmOTcyOTRhNjhiYzY4ZjMyMTQwN2NiOTEwIiwidXNlcl9pZCI6Mn0.cMJOZuiArIjkUnYeVdP-sFNOPxf4K0iRleK8F5OfbXY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"amount\": \"21812.30\", \"method\": \"bank_transfer\", \"reference_number\": \"TXN-000123\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/invoices/INV-2026-50639/payments/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "invoices",
+                "INV-2026-50639",
+                "payments",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "item": [
+        {
+          "name": "order create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzA5OTQwLCJpYXQiOjE3ODY3MDYzNDAsImp0aSI6ImFkZDVkNjNhZTNjNjQ5OWU5YWVlMTZlNmRhOTYxYTc3IiwidXNlcl9pZCI6Mn0.h48MDZji8lc3x86WG679_GpYswsMA8oAoRHKzMQvezU",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"vendor\": 1, \"shipping_address\": 1, \"billing_address\": 1, \"items\": [{\"product\": 1, \"quantity\": 2}], \"notes\": \"Email test\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/create/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "create",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg2NzA5OTQwLCJpYXQiOjE3ODY3MDYzNDAsImp0aSI6ImFkZDVkNjNhZTNjNjQ5OWU5YWVlMTZlNmRhOTYxYTc3IiwidXNlcl9pZCI6Mn0.h48MDZji8lc3x86WG679_GpYswsMA8oAoRHKzMQvezU",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/orders/ORD-2026-98564/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "ORD-2026-98564",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "dasboard",
+      "item": [
+        {
+          "name": "dasboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzg3NTgzNDk4LCJpYXQiOjE3ODc1Nzk4OTgsImp0aSI6Ijg1ZDdjODcyOTEwYjRhZjY4ZmQxOGE1NmNlZDNmMTI2IiwidXNlcl9pZCI6NH0.nNrjaav7w3494moIFBUEJxQDVfsBAe3gJy1b1S3ZGI0",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/v1/vendors/dashboard/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "vendors",
+                "dashboard",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "bearer_token_01l3",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_12se",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0qze",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0w1o",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_0x06",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_0glb",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0xs9",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0xs9",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_07fh",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_1ctv",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_1eji",
+      "secret": true
+    },
+    {
+      "key": "bearer_token_1d19",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0b0n",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0b0n",
+      "secret": true
+    }
+  ]
+}

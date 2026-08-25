@@ -113,3 +113,10 @@ apps/
 seeders/            # per-app demo data
 config/             # settings (base/dev/prod), celery, urls
 ```
+
+
+## Running Tests
+
+```bash
+pip install -r requirements/dev.txt
+pytest tests/ -v

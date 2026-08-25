@@ -19,9 +19,13 @@ from apps.catalog.serializers import (
 from apps.catalog.permissions import IsProductOwner, IsApprovedVendorPermission
 from apps.core.pagination import StandardResultsSetPagination
 
-
+    
 def invalidate_product_cache():
-    cache.delete_pattern('products_list_*')
+    if hasattr(cache, 'delete_pattern'):
+        cache.delete_pattern('products_list_*')
+    else:
+        # Fallback for non-Redis cache backends (e.g., LocMemCache in tests)
+        cache.clear()
 
 
 class CategoryListView(APIView):

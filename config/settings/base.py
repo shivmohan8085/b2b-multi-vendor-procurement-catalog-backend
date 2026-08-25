@@ -222,10 +222,9 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@procureflow.com')
 
-# API Documentation
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'B2B Multi-Vendor Procurement & Catalog API',
-    'DESCRIPTION': 'Production-grade B2B procurement system with vendor management, catalog, orders, and invoices',
+    'TITLE': 'ProcureFlow API',
+    'DESCRIPTION': 'B2B Multi-Vendor Procurement & Catalog Platform - vendors, products, orders, invoices, notifications',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }

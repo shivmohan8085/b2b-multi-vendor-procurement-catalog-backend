@@ -687,3 +687,22 @@ docker compose logs -f celery_worker
 
 # Band karo
 docker compose down
+
+
+
+
+
+
+docker filesls flow   ---------------------------
+
+Dockerfile                    docker-compose.yml
+    │                              │
+    │ docker build                 │ docker compose up
+    ▼                              ▼
+ 1 IMAGE  ──────────────►  5 CONTAINERS
+ (app ka snapshot)         (web, worker, beat, db, redis)
+                                 │
+                                 ▼
+                        Ek private network —
+                        sab aapas me baat karte hain
+                        (web "db" naam se DB ko bulata hai)

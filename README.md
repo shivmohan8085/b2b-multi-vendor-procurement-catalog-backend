@@ -120,3 +120,9 @@ config/             # settings (base/dev/prod), celery, urls
 ```bash
 pip install -r requirements/dev.txt
 pytest tests/ -v
+
+
+# ProcureFlow — B2B Multi-Vendor Procurement & Catalog Backend
+
+![CI](https://github.com/shivmohan8085/b2b-multi-vendor-procurement-catalog-backend/actions/workflows/ci.yml/badge.svg)
+Production-grade REST API backend for a B2B multi-vendor procurement platform.
